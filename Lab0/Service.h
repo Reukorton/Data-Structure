@@ -1,0 +1,12 @@
+void StartMessageProgram();
+void ArraySorting(int *array, int arrayCount);
+void ArraySorting(double *array, int arrayCount);
+double GetPower(double  base, int exponent);
+void RoundToTens(int& value);
+void Foo(double a);
+void Foo2(double& a);
+void Foo3(double* a);
+int FindIndex(int* array, int findNum, int sizeArray);
+int* MakeRandomArray(int arraySize);
+int* ReadArray(int count);
+int CountPositiveValues(int* values, int count);
