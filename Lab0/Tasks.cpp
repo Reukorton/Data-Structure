@@ -20,9 +20,11 @@ void Task1112()
 {
     double add = 1.0;
     double sum = 0.0;
+
     for (int i = 0; i < 1000; i++)
     {
-        sum += add * i; // 3.2624579394327844
+        // 3.2624579394327844
+        sum += add * i;
         if (i % 3 == 0)
         {
             add *= 1.1;
@@ -51,7 +53,8 @@ void Task1121()
     cout << "Sorted array is:" << endl;
     ArraySorting(numbers, countArray);
 
-    for (int num:numbers) {
+    for (int num:numbers)
+    {
         cout << num << " ";
     }
     cout << "\n";

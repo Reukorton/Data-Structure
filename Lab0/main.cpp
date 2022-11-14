@@ -5,21 +5,19 @@ using namespace std;
 
 int main()
 {
-    bool launch = true;
-    int taskNumber;
 
     StartMessageProgram();
 
-    while (launch)
+    while (true)
     {
+        int taskNumber;
         cout << "Task selection:";
         cin >> taskNumber;
 
         switch (taskNumber)
         {
             case 0:
-                launch = false;
-                break;
+                return 0;
             case 1:
                 Task1111();
                 break;
@@ -82,7 +80,8 @@ int main()
                 Task1156();
                 break;
             case 21:
-                for (int i = 0; i < 3; ++i) {
+                for (int i = 0; i < 3; ++i)
+                {
                     Task1157();
                 }
                 break;
