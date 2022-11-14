@@ -12,3 +12,4 @@ void DeleteArray(DynamicArray* array);
 void AddElement(DynamicArray* array);
 void AddElementInStarting(DynamicArray* array);
 void AddAfterCertainElement(DynamicArray* array);
+void SortingArray(DynamicArray* array);

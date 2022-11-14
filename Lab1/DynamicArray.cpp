@@ -2,6 +2,8 @@
 #include "DynamicArray.h"
 #include "Service.h"
 
+using namespace std;
+
 int capacity = 8;
 
 void CreateDynamicArray(DynamicArray* array)
@@ -62,4 +64,18 @@ void AddAfterCertainElement(DynamicArray* array)
         array->Array[i] = array->Array[i-1];
     }
     array->Array[index+1] = element;
+}
+
+void SortingArray(DynamicArray* array)
+{
+    for (int i = 0; i < array->Size; ++i)
+    {
+        for (int j = i+1; j < array->Size; ++j)
+        {
+            if (array->Array[i] > array->Array[j])
+            {
+                swap(array->Array[i], array->Array[j]);
+            }
+        }
+    }
 }

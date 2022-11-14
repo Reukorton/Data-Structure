@@ -40,6 +40,9 @@ int main()
                 AddAfterCertainElement(array);
                 break;
             case 6:
+                SortingArray(array);
+                break;
+            case 7:
                 PrintArray(array);
                 break;
         }
