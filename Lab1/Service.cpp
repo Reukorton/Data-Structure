@@ -6,33 +6,7 @@ using namespace std;
 int InputElement()
 {
     int element;
-
-    cout << "Добавить в массив элемент: ";
     cin >> element;
-    cout << endl;
-
-    return element;
-}
-
-int InputCertainElement()
-{
-    int certainElement;
-
-    cout << "После какого элемента добавить:";
-    cin >> certainElement;
-    cout << endl;
-
-    return  certainElement;
-}
-
-
-int InputElementInStarting()
-{
-    int element;
-
-    cout << "Добавить в начало массива элемент: ";
-    cin >> element;
-    cout << endl;
 
     return element;
 }
@@ -43,16 +17,11 @@ void PrintArray(DynamicArray* array)
     {
         cout << array->Array[i] << " ";
     }
-    cout << endl;
+    cout << endl << endl;
 }
 
-int FindElement(DynamicArray* array)
+int FindElement(DynamicArray* array, int element)
 {
-    int element;
-
-    cout << "Какой елемент массива, который нужно удалить: ";
-    cin >> element;
-
     for (int i = 0; i < array->Size; ++i)
     {
         if (array->Array[i] == element)
@@ -64,13 +33,8 @@ int FindElement(DynamicArray* array)
     return -1;
 }
 
-int FindCertainElement(DynamicArray* array)
+int FindIndexCertainElement(DynamicArray* array, int element)
 {
-    int element;
-
-    cout << "После какого элемента нужно добавить: ";
-    cin >> element;
-
     for (int i = 0; i < array->Size; ++i)
     {
         if (array->Array[i] == element)

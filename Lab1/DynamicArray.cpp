@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int capacity = 8;
+int capacity = 2;
 
 void CreateDynamicArray(DynamicArray* array)
 {
@@ -19,27 +19,26 @@ void DeleteArray(DynamicArray* array)
     delete array;
 }
 
-void AddElement(DynamicArray* array)
+void AddElement(DynamicArray* array, int element)
 {
-    array->Array[array->Size] = InputElement();
+    ResizeDynamicArray(array);
+    array->Array[array->Size] = element;
     array->Size++;
 }
 
-void AddElementInStarting(DynamicArray* array)
+void AddElementInStarting(DynamicArray* array, int element)
 {
+    ResizeDynamicArray(array);
     array->Size++;
     for (int i = array->Size-1; i >= 1; --i)
     {
         array->Array[i] = array->Array[i-1];
     }
-    array->Array[0] = InputElementInStarting();
+    array->Array[0] = element;
 }
 
-void RemoveElement(DynamicArray* array)
+void RemoveElement(DynamicArray* array, int index)
 {
-    int index;
-
-    index = FindElement(array);
     for (int i = index; i < array->Size; ++i)
     {
         if (i+1 < array->Size)
@@ -48,16 +47,12 @@ void RemoveElement(DynamicArray* array)
         }
     }
     array->Size--;
+    ReductionDynamicArray(array);
 }
 
-void AddAfterCertainElement(DynamicArray* array)
+void AddAfterCertainElement(DynamicArray* array, int element, int index)
 {
-    int index;
-    int element;
-
-    index = FindCertainElement(array);
-    element = InputElement();
-
+    ResizeDynamicArray(array);
     array->Size++;
     for (int i = array->Size-1; i > index+1; --i)
     {
@@ -77,5 +72,89 @@ void SortingArray(DynamicArray* array)
                 swap(array->Array[i], array->Array[j]);
             }
         }
+    }
+}
+
+int LinearSearch(DynamicArray* array, int element)
+{
+    for (int i = 0; i < array->Size; ++i)
+    {
+        if (array->Array[i] == element)
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+int BinarySearch(DynamicArray* array, int element)
+{
+    SortingArray(array);
+    int first = 0;
+    int last = array->Size;
+
+    while (first < last)
+    {
+        int mid = (first + last) / 2;
+        if (element <= array->Array[mid])
+        {
+            last = mid;
+        }
+        else
+        {
+            first = mid + 1;
+        }
+    }
+
+    if (first != 0)
+    {
+        return first;
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+void ResizeDynamicArray(DynamicArray* array)
+{
+    if (array->Size >= array->Capacity)
+    {
+        array->Capacity += array->Capacity;
+        int* tempArrayInfo = new int[array->Capacity];
+        for (int i = 0; i < array->Size; i++)
+        {
+            tempArrayInfo[i] = array->Array[i];
+        }
+        delete[] array->Array;
+
+        array->Array = new int[array->Capacity];
+        for (int i = 0; i < array->Size; i++)
+        {
+            array->Array[i] = tempArrayInfo[i];
+        }
+        delete[] tempArrayInfo;
+    }
+}
+
+void ReductionDynamicArray(DynamicArray* array)
+{
+    if ((array->Capacity - array->Size) > array->Capacity)
+    {
+        int* tempArrayInfo = new int[array->Size];
+        for (int i = 0; i < array->Size; i++)
+        {
+            tempArrayInfo[i] = array->Array[i];
+        }
+        array->Capacity -= array->Capacity;
+        delete[] array->Array;
+
+        array->Array = new int[array->Capacity];
+        for (int i = 0; i < array->Size; i++)
+        {
+            array->Array[i] = tempArrayInfo[i];
+        }
+        delete[] tempArrayInfo;
     }
 }

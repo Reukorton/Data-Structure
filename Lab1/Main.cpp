@@ -28,21 +28,102 @@ int main()
                 PrintText();
                 break;
             case 2:
-                AddElement(array);
+            {
+                cout << "Добавить в массив элемент:";
+                int element = InputElement();
+                cout << endl;
+                AddElement(array, element);
                 break;
+            }
             case 3:
-                RemoveElement(array);
+            {
+                cout << "Удаляемый элемент из массива:";
+                int element = InputElement();
+                cout << endl;
+                int index = FindElement(array, element);
+
+                if (index != -1)
+                {
+                    RemoveElement(array, index);
+                }
+                else
+                {
+                    cout << "Такого элемента нет в массиве";
+                }
+
                 break;
+            }
             case 4:
-                AddElementInStarting(array);
+            {
+                cout << "Элемент для вставки в начало массива:";
+                int element = InputElement();
+                cout << endl;
+                AddElementInStarting(array, element);
                 break;
+            }
             case 5:
-                AddAfterCertainElement(array);
+            {
+                cout << "Элемент для вставки в массив:";
+                int element = InputElement();
+                cout << "Вставка элемента после:";
+                int certainElement = InputElement();
+                int index = FindIndexCertainElement(array, certainElement);
+
+                if (index != -1)
+                {
+                    cout << endl;
+                    AddAfterCertainElement(array, element, index);
+                }
+                else
+                {
+                    cout << "В массиве нет элемента после которого необходимо выполнить вставку." << endl << endl;
+                }
+
                 break;
+            }
             case 6:
+            {
                 SortingArray(array);
+                cout << endl;
                 break;
+            }
             case 7:
+            {
+                cout << "Элемент для поиска:";
+                int element = InputElement();
+                cout << endl;
+                int index = LinearSearch(array, element);
+
+                if (index != -1)
+                {
+                    cout << "Первое вхождение элемента по индексу:" << index << endl << endl;
+                }
+                else
+                {
+                    cout << "Такого элемента в массиве нет" << endl << endl;
+                }
+
+                break;
+            }
+            case 8:
+            {
+                cout << "Элемент для поиска:";
+                int element = InputElement();
+                int index = BinarySearch(array, element);
+
+                if (index != -1)
+                {
+                    cout << "Первое вхождение элемента по индексу:" << index << endl << endl;
+                }
+                else
+                {
+                    cout << "Такого элемента в массиве нет" << endl;
+                }
+
+                cout << endl;
+                break;
+            }
+            case 9:
                 PrintArray(array);
                 break;
         }
