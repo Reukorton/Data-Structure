@@ -4,7 +4,6 @@
 #include "Windows.h"
 
 using namespace std;
-void PrintText();
 
 int main()
 {
@@ -12,6 +11,8 @@ int main()
 
     DynamicArray* array = new DynamicArray;
     CreateDynamicArray(array);
+
+    Menu();
 
     while(true)
     {
@@ -25,7 +26,7 @@ int main()
                 DeleteArray(array);
                 return 0;
             case 1:
-                PrintText();
+                Menu();
                 break;
             case 2:
             {
@@ -128,14 +129,4 @@ int main()
                 break;
         }
     }
-}
-
-void PrintText()
-{
-    cout << "0. Завершить программу.\n1. Очистить консоль.\n"
-            "2. Добавить значение в массив.\n3. Удалить значение из массива.\n"
-            "4. Вставить элемент по индексу в массив.\n5. Сортировать массив.\n"
-            "6. Линейный поиск элемента.\n7.Бинарный поиск элемента.\n"
-            "8. Пересоздать массив.\n9. Вывести массив\n" << endl;
-    cout << endl;
 }

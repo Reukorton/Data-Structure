@@ -2,9 +2,7 @@
 #include "DynamicArray.h"
 #include "Service.h"
 
-using namespace std;
-
-int capacity = 2;
+int capacity = 8;
 
 void CreateDynamicArray(DynamicArray* array)
 {
@@ -69,7 +67,7 @@ void SortingArray(DynamicArray* array)
         {
             if (array->Array[i] > array->Array[j])
             {
-                swap(array->Array[i], array->Array[j]);
+                std::swap(array->Array[i], array->Array[j]);
             }
         }
     }
