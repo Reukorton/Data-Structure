@@ -2,6 +2,7 @@
 #include "DynamicArray.h"
 #include "Service.h"
 #include "Windows.h"
+#include "string"
 
 using namespace std;
 
@@ -16,9 +17,7 @@ int main()
 
     while(true)
     {
-        int number;
-        cout << "Введите номер действия: ";
-        cin >> number;
+        int number = InputElement("Введите номер действия: ");
 
         switch(number)
         {
@@ -30,17 +29,13 @@ int main()
                 break;
             case 2:
             {
-                cout << "Добавить в массив элемент:";
-                int element = InputElement();
-                cout << endl;
+                int element = InputElement("Добавить в массив элемент:");
                 AddElement(array, element);
                 break;
             }
             case 3:
             {
-                cout << "Удаляемый элемент из массива:";
-                int element = InputElement();
-                cout << endl;
+                int element = InputElement("Удаляемый элемент из массива:");
                 int index = FindElement(array, element);
 
                 if (index != -1)
@@ -56,19 +51,15 @@ int main()
             }
             case 4:
             {
-                cout << "Элемент для вставки в начало массива:";
-                int element = InputElement();
-                cout << endl;
+                int element = InputElement("Элемент для вставки в начало массива:");
                 AddElementInStarting(array, element);
                 break;
             }
             case 5:
             {
-                cout << "Элемент для вставки в массив:";
-                int element = InputElement();
-                cout << "Вставка элемента после:";
-                int certainElement = InputElement();
-                int index = FindIndexCertainElement(array, certainElement);
+                int element = InputElement("Элемент для вставки в массив:");
+                int certainElement = InputElement("Вставка элемента после:");
+                int index = FindElement(array, certainElement);
 
                 if (index != -1)
                 {
@@ -90,9 +81,7 @@ int main()
             }
             case 7:
             {
-                cout << "Элемент для поиска:";
-                int element = InputElement();
-                cout << endl;
+                int element = InputElement("Элемент для поиска:");
                 int index = LinearSearch(array, element);
 
                 if (index != -1)
@@ -108,8 +97,7 @@ int main()
             }
             case 8:
             {
-                cout << "Элемент для поиска:";
-                int element = InputElement();
+                int element = InputElement("Элемент для поиска:");
                 int index = BinarySearch(array, element);
 
                 if (index != -1)

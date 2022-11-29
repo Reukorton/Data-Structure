@@ -1,14 +1,22 @@
 #include <iostream>
 #include "Service.h"
 #include "DynamicArray.h"
+#include "string"
 using namespace std;
 
-int InputElement()
+int InputElement(string str)
 {
     int element;
-    cin >> element;
+    while (true)
+    {
+        cout << str;
+        cin >> element;
 
-    return element;
+        if (!cin.fail()) return element;
+
+        cin.clear();
+        cin.ignore(32767, '\n');
+    }
 }
 
 void PrintArray(DynamicArray* array)
@@ -20,38 +28,12 @@ void PrintArray(DynamicArray* array)
     cout << endl << endl;
 }
 
-int FindElement(DynamicArray* array, int element)
-{
-    for (int i = 0; i < array->Size; ++i)
-    {
-        if (array->Array[i] == element)
-        {
-            return i;
-        }
-    }
-
-    return -1;
-}
-
-int FindIndexCertainElement(DynamicArray* array, int element)
-{
-    for (int i = 0; i < array->Size; ++i)
-    {
-        if (array->Array[i] == element)
-        {
-            return i;
-        }
-    }
-
-    return -1;
-}
-
 void Menu()
 {
     cout << "0. Завершить программу.\n1. Вывести меню.\n"
             "2. Добавить значение в массив.\n3. Удалить значение из массива.\n"
             "4. Вставить элемент в начало массива.\n5. Вставить элемент после определенного.\n"
-            "6. Сортировать массив.\n7.Линейный поиск элемента.\n"
+            "6. Сортировать массив.\n7. Линейный поиск элемента.\n"
             "8. Бинарный поиск элемента.\n9. Вывести массив\n" << endl;
     cout << endl;
 }

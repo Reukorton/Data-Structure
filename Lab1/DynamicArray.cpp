@@ -1,4 +1,3 @@
-#include <iostream>
 #include "DynamicArray.h"
 #include "Service.h"
 
@@ -19,16 +18,18 @@ void DeleteArray(DynamicArray* array)
 
 void AddElement(DynamicArray* array, int element)
 {
+    //TODO: дублируется
     ResizeDynamicArray(array);
     array->Array[array->Size] = element;
     array->Size++;
 }
 
 void AddElementInStarting(DynamicArray* array, int element)
-{
+    {
+    //TODO: дублируется
     ResizeDynamicArray(array);
     array->Size++;
-    for (int i = array->Size-1; i >= 1; --i)
+    for (int i = array->Size; i >= 1; --i)
     {
         array->Array[i] = array->Array[i-1];
     }
@@ -52,7 +53,7 @@ void AddAfterCertainElement(DynamicArray* array, int element, int index)
 {
     ResizeDynamicArray(array);
     array->Size++;
-    for (int i = array->Size-1; i > index+1; --i)
+    for (int i = array->Size; i > index+1; --i)
     {
         array->Array[i] = array->Array[i-1];
     }
@@ -117,27 +118,41 @@ int BinarySearch(DynamicArray* array, int element)
 
 void ResizeDynamicArray(DynamicArray* array)
 {
+    int* tempArrayInfo;
+
     if (array->Size >= array->Capacity)
     {
+        //TODO: дублируется
         array->Capacity += array->Capacity;
-        int* tempArrayInfo = new int[array->Capacity];
+        tempArrayInfo = new int[array->Capacity];
         for (int i = 0; i < array->Size; i++)
         {
             tempArrayInfo[i] = array->Array[i];
         }
         delete[] array->Array;
-
-        array->Array = new int[array->Capacity];
+    }
+    else
+    {
+        tempArrayInfo = new int[array->Size];
         for (int i = 0; i < array->Size; i++)
         {
-            array->Array[i] = tempArrayInfo[i];
+            tempArrayInfo[i] = array->Array[i];
         }
-        delete[] tempArrayInfo;
+        array->Capacity -= array->Capacity;
+        delete[] array->Array;
     }
+
+    array->Array = new int[array->Capacity];
+    for (int i = 0; i < array->Size; i++)
+    {
+        array->Array[i] = tempArrayInfo[i];
+    }
+    delete[] tempArrayInfo;
 }
 
 void ReductionDynamicArray(DynamicArray* array)
 {
+    //TODO: дублируется
     if ((array->Capacity - array->Size) > array->Capacity)
     {
         int* tempArrayInfo = new int[array->Size];
@@ -155,4 +170,17 @@ void ReductionDynamicArray(DynamicArray* array)
         }
         delete[] tempArrayInfo;
     }
+}
+
+int FindElement(DynamicArray* array, int element)
+{
+    for (int i = 0; i < array->Size; ++i)
+    {
+        if (array->Array[i] == element)
+        {
+            return i;
+        }
+    }
+
+    return -1;
 }

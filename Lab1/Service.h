@@ -1,8 +1,6 @@
 #include "DynamicArray.h"
+#include "string"
 
-
-int InputElement();
+int InputElement(std::string str);
 void PrintArray(DynamicArray* array);
-int FindElement(DynamicArray* array, int element);
-int FindIndexCertainElement(DynamicArray* array, int element);
 void Menu();
