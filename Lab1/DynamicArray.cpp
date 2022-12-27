@@ -18,22 +18,25 @@ void DeleteArray(DynamicArray* array)
 
 void AddElement(DynamicArray* array, int element)
 {
-    //TODO: дублируется
     ResizeDynamicArray(array);
     array->Array[array->Size] = element;
     array->Size++;
 }
 
 void AddElementInStarting(DynamicArray* array, int element)
-    {
-    //TODO: дублируется
+{
+    AddAfterCertainElement(array, element, -1);
+}
+
+void AddAfterCertainElement(DynamicArray* array, int element, int index)
+{
     ResizeDynamicArray(array);
     array->Size++;
-    for (int i = array->Size; i >= 1; --i)
+    for (int i = array->Size; i > index+1; --i)
     {
         array->Array[i] = array->Array[i-1];
     }
-    array->Array[0] = element;
+    array->Array[index+1] = element;
 }
 
 void RemoveElement(DynamicArray* array, int index)
@@ -49,16 +52,7 @@ void RemoveElement(DynamicArray* array, int index)
     ResizeDynamicArray(array);
 }
 
-void AddAfterCertainElement(DynamicArray* array, int element, int index)
-{
-    ResizeDynamicArray(array);
-    array->Size++;
-    for (int i = array->Size; i > index+1; --i)
-    {
-        array->Array[i] = array->Array[i-1];
-    }
-    array->Array[index+1] = element;
-}
+
 
 void SortingArray(DynamicArray* array)
 {
@@ -123,6 +117,7 @@ void ResizeDynamicArray(DynamicArray* array)
     if (array->Size >= array->Capacity)
     {
         array->Capacity += array->Capacity;
+        //TODO: duplication
         tempArrayInfo = new int[array->Capacity];
         for (int i = 0; i < array->Size; i++)
         {
@@ -132,12 +127,13 @@ void ResizeDynamicArray(DynamicArray* array)
     }
     else
     {
+        array->Capacity -= array->Capacity;
+        //TODO: duplication
         tempArrayInfo = new int[array->Size];
         for (int i = 0; i < array->Size; i++)
         {
             tempArrayInfo[i] = array->Array[i];
         }
-        array->Capacity -= array->Capacity;
         delete[] array->Array;
     }
 
@@ -147,6 +143,20 @@ void ResizeDynamicArray(DynamicArray* array)
         array->Array[i] = tempArrayInfo[i];
     }
     delete[] tempArrayInfo;
+}
+
+void ReFillingArray(DynamicArray* array)
+{
+    int* tempArrayInfo;
+
+    tempArrayInfo = new int[array->Size];
+    for (int i = 0; i < array->Size; i++)
+    {
+        tempArrayInfo[i] = array->Array[i];
+    }
+    delete[] array->Array;
+
+    array->Array = tempArrayInfo;
 }
 
 int FindElement(DynamicArray* array, int element)
