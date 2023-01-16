@@ -5,6 +5,7 @@
  */
 struct DynamicArray
 {
+    //TODO: comments
     int* Array;
     int Size;
     int Capacity;
@@ -86,3 +87,5 @@ void ResizeDynamicArray(DynamicArray* array);
  * @return Индекс искомого элемента.
  */
 int FindElement(DynamicArray* array, int element);
+
+int* ReFillingArray(DynamicArray* array);
